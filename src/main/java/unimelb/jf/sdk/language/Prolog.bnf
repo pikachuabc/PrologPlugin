@@ -1,0 +1,96 @@
+{
+  parserClass="unimelb.jf.sdk.language.parser.PrologParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+
+  psiClassPrefix="Prolog"
+  psiImplClassSuffix="Impl"
+  psiPackage="unimelb.jf.sdk.language.psi"
+  psiImplPackage="unimelb.jf.sdk.language.psi.impl"
+
+  elementTypeHolderClass="unimelb.jf.sdk.language.psi.PrologTypes"
+  elementTypeClass="unimelb.jf.sdk.language.psi.PrologElementType"
+  tokenTypeClass="unimelb.jf.sdk.language.psi.PrologTokenType"
+
+  psiImplUtilClass="unimelb.jf.sdk.language.psi.impl.PrologPsiImplUtil"
+
+  tokens=[
+    EQUAL='='
+    SEMI=';'
+    COMMA=','
+    DOT='.'
+    UNIFY=':-'
+    EXPAND='-->'
+    NOT='/+'
+    LP='('
+    RP=')'
+    LB='['
+    RB=']'
+    LBR='{'
+    RBR='}'
+    LIST_CONS='|'
+    WILDCARD='_'
+    ARITH_EVAL='is'
+
+    space='regexp:\s+'
+    comment='regexp:(%.*)'
+    block_comment='regexp:/\*(.|\n)*\*/'
+    integer='regexp:\d+'
+    float='regexp:\d+(\.d+)?([Ee]\d+)?' // strict floating mode
+    const='regexp:\p{Lower}(\p{Alnum}|_|-|:)*'
+    atom='regexp:((\p{Upper}|_)(\p{Alnum}|_)*)'
+    operator='regexp:[<=>:!+\\\-*/]+' // considering that operators in prolog can fly everywhere...
+    string="regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")"
+  ]
+
+}
+
+PrologFile ::= item_*
+
+private item_ ::= !<<eof>> (toplevel_expr | trailing_expr) '.'
+
+toplevel_expr ::= (expr_head ((':-' | '-->') expr_body)?)
+
+trailing_expr ::= ':-' expr_body
+
+expr_head ::= predicate
+
+expr_body ::= primary
+
+predicate ::= predicate_id parameter_list?
+
+common_predicate ::= ref_predicate_id parameter_list?
+
+predicate_id ::= const
+
+ref_predicate_id ::= const
+
+parameter_list ::= '(' primary? ')'
+
+logical_or ::= ';' primary
+
+logical_and ::= ',' primary
+
+logical_equal ::= '=' primary
+
+logical_not ::= '/+' primary
+
+arithmetic_eval ::= 'is' primary
+
+equiv_binary ::= ( logical_not | logical_and | arithmetic_eval | logical_equal )
+
+literal ::= string | integer | float
+
+list_constructor ::= '[' ']' | '[' primary '|' primary ']' | '[' primary ']'
+
+common_val ::= common_predicate | ident | literal | list_constructor | '_'
+
+private common_val_or_paren ::= common_val | '(' primary ')' | '{' primary '}'
+
+private primary ::= (common_val_or_paren | logical_not | operator) (common_val_or_paren | equiv_binary | logical_or  | operator)*
+
+ident ::= (const | atom)
+
+
+
