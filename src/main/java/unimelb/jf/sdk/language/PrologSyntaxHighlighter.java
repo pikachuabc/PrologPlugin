@@ -13,7 +13,7 @@ import unimelb.jf.sdk.language.psi.PrologTypes;
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 
 /**
- * @description:
+ * @description: .flex level syntax highlighter
  * @author: Fan Jia
  */
 public class PrologSyntaxHighlighter extends SyntaxHighlighterBase {
@@ -21,11 +21,13 @@ public class PrologSyntaxHighlighter extends SyntaxHighlighterBase {
     //DefaultLanguageHighlighterColors.XXX just color styles, doesn't must have to match its meaning.
 
     public static final TextAttributesKey UNIFY =
-            createTextAttributesKey("SIMPLE_SEPARATOR", DefaultLanguageHighlighterColors.KEYWORD);
+            createTextAttributesKey("UNIFY", DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey LB =
+            createTextAttributesKey("LB", DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey RB =
+            createTextAttributesKey("RB", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey STRING =
             createTextAttributesKey("STRING", DefaultLanguageHighlighterColors.STRING);
-    public static final TextAttributesKey CONSTANT =
-            createTextAttributesKey("CONSTANT", DefaultLanguageHighlighterColors.FUNCTION_DECLARATION);
     public static final TextAttributesKey ATOM =
             createTextAttributesKey("ATOM", DefaultLanguageHighlighterColors.CONSTANT);
     public static final TextAttributesKey COMMA =
@@ -42,8 +44,9 @@ public class PrologSyntaxHighlighter extends SyntaxHighlighterBase {
 
 
     private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
-    private static final TextAttributesKey[] SEPARATOR_KEYS = new TextAttributesKey[]{UNIFY};
-    private static final TextAttributesKey[] CONSTANT_KEYS = new TextAttributesKey[]{CONSTANT};
+    private static final TextAttributesKey[] UNIFY_KEYS = new TextAttributesKey[]{UNIFY};
+    private static final TextAttributesKey[] LB_KEYS = new TextAttributesKey[]{LB};
+    private static final TextAttributesKey[] RB_KEYS = new TextAttributesKey[]{RB};
     private static final TextAttributesKey[] ATOM_KEYS = new TextAttributesKey[]{ATOM};
     private static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[]{COMMENT};
     private static final TextAttributesKey[] COMMA_KEYS = new TextAttributesKey[]{COMMA};
@@ -61,12 +64,15 @@ public class PrologSyntaxHighlighter extends SyntaxHighlighterBase {
     @NotNull
     @Override
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
+
         if (tokenType.equals(PrologTypes.UNIFY)) {
-            return SEPARATOR_KEYS;
-        } else if (tokenType.equals(PrologTypes.CONST)) {
-            return CONSTANT_KEYS;
+            return UNIFY_KEYS;
         } else if (tokenType.equals(PrologTypes.ATOM)) {
             return ATOM_KEYS;
+        } else if (tokenType.equals(PrologTypes.LB)) {
+            return LB_KEYS;
+        } else if (tokenType.equals(PrologTypes.RB)) {
+            return RB_KEYS;
         } else if (tokenType.equals(PrologTypes.COMMENT)) {
             return COMMENT_KEYS;
         } else if (tokenType.equals(TokenType.BAD_CHARACTER)) {

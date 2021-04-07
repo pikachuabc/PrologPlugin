@@ -29,3 +29,8 @@ test {
 }
 
 sourceSets.main.java.srcDirs 'src/main/gen'
+
+intellij {
+    plugins = ['com.intellij.java']
+}
+

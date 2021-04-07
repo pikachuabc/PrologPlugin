@@ -11,6 +11,7 @@
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType name="Prolog File" implementationClass="unimelb.jf.sdk.language.PrologFileType"
@@ -20,6 +21,8 @@
         <lang.syntaxHighlighterFactory language="Prolog"
                                        implementationClass="unimelb.jf.sdk.language.PrologSyntaxHighlighterFactory"/>
         <lang.commenter language="Prolog" implementationClass="unimelb.jf.sdk.language.PrologCommenter"/>
+        <annotator language="Prolog" implementationClass="unimelb.jf.sdk.language.PrologAnnotator"/>
+
         <!-- Add your extensions here -->
     </extensions>
 
