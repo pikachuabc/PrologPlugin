@@ -38,6 +38,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
 <YYINITIAL> {
 
   "="                { return PrologTypes.EQUAL; }
+  "/+"               { return PrologTypes.NOT; }
   ";"                { return PrologTypes.SEMI; }
   ","                { return PrologTypes.COMMA; }
   "."                { return PrologTypes.DOT; }

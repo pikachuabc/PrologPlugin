@@ -22,6 +22,12 @@ public class PrologSyntaxHighlighter extends SyntaxHighlighterBase {
 
     public static final TextAttributesKey UNIFY =
             createTextAttributesKey("UNIFY", DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey OR =
+            createTextAttributesKey("OR", DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey NOT =
+            createTextAttributesKey("NOT", DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey ARITH_EVAL =
+            createTextAttributesKey("ARITH_EVAL", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey LB =
             createTextAttributesKey("LB", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey RB =
@@ -42,8 +48,10 @@ public class PrologSyntaxHighlighter extends SyntaxHighlighterBase {
             createTextAttributesKey("SIMPLE_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
 
 
-
     private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
+    private static final TextAttributesKey[] OR_KEYS = new TextAttributesKey[]{OR};
+    private static final TextAttributesKey[] NOT_KEYS = new TextAttributesKey[]{NOT};
+    private static final TextAttributesKey[] ARITH_EVAL_KEYS = new TextAttributesKey[]{ARITH_EVAL};
     private static final TextAttributesKey[] UNIFY_KEYS = new TextAttributesKey[]{UNIFY};
     private static final TextAttributesKey[] LB_KEYS = new TextAttributesKey[]{LB};
     private static final TextAttributesKey[] RB_KEYS = new TextAttributesKey[]{RB};
@@ -69,6 +77,12 @@ public class PrologSyntaxHighlighter extends SyntaxHighlighterBase {
             return UNIFY_KEYS;
         } else if (tokenType.equals(PrologTypes.ATOM)) {
             return ATOM_KEYS;
+        } else if (tokenType.equals(PrologTypes.SEMI)) {
+            return OR_KEYS;
+        } else if (tokenType.equals(PrologTypes.NOT)) {
+            return NOT_KEYS;
+        } else if (tokenType.equals(PrologTypes.ARITH_EVAL)) {
+            return ARITH_EVAL_KEYS;
         } else if (tokenType.equals(PrologTypes.LB)) {
             return LB_KEYS;
         } else if (tokenType.equals(PrologTypes.RB)) {
@@ -83,9 +97,9 @@ public class PrologSyntaxHighlighter extends SyntaxHighlighterBase {
             return DOT_KEYS;
         } else if (tokenType.equals(PrologTypes.STRING)) {
             return STRING_KEYS;
-        }else if (tokenType.equals(PrologTypes.INTEGER) || tokenType.equals(PrologTypes.FLOAT)) {
+        } else if (tokenType.equals(PrologTypes.INTEGER) || tokenType.equals(PrologTypes.FLOAT)) {
             return NUMBER_KEYS;
-        }else {
+        } else {
             return EMPTY_KEYS;
         }
     }
