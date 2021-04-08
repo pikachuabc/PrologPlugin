@@ -3,7 +3,6 @@ package unimelb.jf.sdk.language;
 import com.intellij.formatting.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.formatter.common.AbstractBlock;
-import com.intellij.psi.tree.TokenSet;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import unimelb.jf.sdk.language.psi.PrologTypes;
@@ -47,18 +46,14 @@ public class PrologBlock extends AbstractBlock {
                     blocks.add(block1);
                 }
                 if (expBody != null) {
-//                    ASTNode[] nodes = expBody.getChildren(null);
-//                    for (ASTNode node : nodes) {
-//                        Block temp = new PrologBlock(node, Wrap.createWrap(WrapType.NONE, false), Alignment.createAlignment(),
-//                                spacingBuilder, true);
-//                        blocks.add(temp);
-//                    }
                     Block block1 = new PrologBlock(expBody, Wrap.createWrap(WrapType.NONE, false), Alignment.createAlignment(),
                             spacingBuilder, true);
                     blocks.add(block1);
                 }
 
-            } else if (child.getElementType() == PrologTypes.DOT) {
+            } else if (child.getElementType() == PrologTypes.DOT
+                    || child.getElementType() == PrologTypes.COMMENT
+                    || child.getElementType() == PrologTypes.TRAILING_EXPR) {
                 Block block1 = new PrologBlock(child, Wrap.createWrap(WrapType.NONE, false), Alignment.createAlignment(),
                         spacingBuilder, false);
                 blocks.add(block1);

@@ -33,7 +33,7 @@ public class PrologFileType extends LanguageFileType {
     @NotNull
     @Override
     public String getDefaultExtension() {
-        return "mypl";
+        return "pl";
     }
 
     @Nullable
