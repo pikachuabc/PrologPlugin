@@ -1,12 +1,23 @@
 <idea-plugin>
-    <id>com.your.company.unique.plugin.id</id>
-    <name>Prolog-Support-Unimelb</name>
+    <id>au.unimelb.jf</id>
+    <name>Prolog-Syntax-Support</name>
     <version>1.0</version>
-    <vendor email="jfj@student.unimelb.edu.au" url="https://www.unimelb.edu.au/">university of melbourne</vendor>
-
+    <vendor email="jfj@student.unimelb.edu.au" url="https://www.unimelb.edu.au/">Jacob Jia</vendor>
+    <change-notes>Initial release of the plugin.</change-notes>
     <description>
-        prolog support prolog support prolog support prolog support prolog support prolog support prolog support
+        <![CDATA[
+        <p>
+            <b>Prolog-swi</b> language Support plugin for learner.
+        </p>
+        <ul>- Basic prolog syntax analysis</ul>
+        <ul>- Highlighter for predicate, atom, constant....</ul>
+        <ul>- Go to implementation</ul>
+        <ul>- Commenter</ul>
+        <ul>- Auto formatting</ul>
+        ]]>
     </description>
+
+
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
@@ -15,7 +26,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType name="Prolog File" implementationClass="unimelb.jf.sdk.language.PrologFileType"
-                  fieldName="INSTANCE" language="Prolog" extensions="mypl"/>
+                  fieldName="INSTANCE" language="Prolog" extensions="pl"/>
         <lang.parserDefinition language="Prolog"
                                implementationClass="unimelb.jf.sdk.language.PrologParserDefinition"/>
         <lang.syntaxHighlighterFactory language="Prolog"
@@ -24,6 +35,8 @@
         <annotator language="Prolog" implementationClass="unimelb.jf.sdk.language.PrologAnnotator"/>
         <lang.formatter language="Prolog"
                         implementationClass="unimelb.jf.sdk.language.PrologFormattingModelBuilder"/>
+        <lang.directNavigationProvider
+                implementation="unimelb.jf.sdk.language.PrologDirectNavigationProvider"/>
         <!-- Add your extensions here -->
     </extensions>
 
