@@ -19,7 +19,7 @@ the plugin will identify the predicates *with the different amount of parameters
 batch commenter, select lines and hold command/ctrl + "/" 
 > Auto formatting</ul>  
 
-this helps you add spaces around UNIFY and other operators and indent composed predicated to make your code looks pretty  
+this helps you add spaces around UNIFY and other operators and indent composed predicates to make your code look pretty  
 
 ###local installation
 if u can't find it at plugin marketplace yet, download [PrologPlugin](src/main/resources/distribution/PrologPlugin-1.0-SNAPSHOT.zip) and installed it at your IDE by disk-installation

@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.intellij' version '0.7.2'
 }
 
-group 'org.example'
+group 'au.unimelb'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -19,11 +19,7 @@ dependencies {
 intellij {
     version '2020.3.2'
 }
-patchPluginXml {
-    changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
-}
+
 test {
     useJUnitPlatform()
 }
