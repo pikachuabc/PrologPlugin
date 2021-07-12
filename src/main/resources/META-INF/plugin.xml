@@ -1,9 +1,9 @@
 <idea-plugin>
     <id>au.unimelb.jf</id>
     <name>Prolog-Syntax-Support</name>
-    <version>1.0</version>
+    <version>1.1</version>
     <vendor email="jfj@student.unimelb.edu.au" url="https://www.unimelb.edu.au/">Jacob Jia</vendor>
-    <change-notes>Initial release of the plugin.</change-notes>
+    <change-notes>adapt intellij platform</change-notes>
     <description>
         <![CDATA[
         <p>
