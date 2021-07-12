@@ -22,4 +22,4 @@ batch commenter, select lines and hold command/ctrl + "/"
 this helps you add spaces around UNIFY and other operators and indent composed predicates to make your code look pretty  
 
 ###local installation
-if u can't find it at plugin marketplace yet, download [PrologPlugin](src/main/resources/distribution/PrologPlugin-1.0-SNAPSHOT.zip) and installed it at your IDE by disk-installation
+if u can't find it at plugin marketplace yet, download [PrologPlugin](src/main/resources/distribution/PrologPlugin-1.1-SNAPSHOT.zip) and installed it at your IDE by disk-installation
